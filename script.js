@@ -1,23 +1,19 @@
 //Library Array
-
-const myLibrary = []
+const booksArray = []
 
 // HTML to JS Selectors
-
 const bookDisplay = document.getElementById('bookDisplay')
 const bookForm = document.getElementById('book-form')
 
 // Input Fields
-
 const bookTitleInput = document.getElementById('bookTitleInput')
 const authorInput = document.getElementById('authorInput')
 const pageNumberInput = document.getElementById('pageNumbers')
 const readStatus = document.getElementById('readStatus')
 
 // Form Validation
-
 bookTitleInput.addEventListener("input", () => {
-    if (bookTitleInput.value === "") {
+    if (bookTitleInput.validity.valueMissing) {
         bookTitleInput.setCustomValidity("Book title cannot be blank!");
         bookTitleInput.reportValidity();
     } else {
@@ -26,7 +22,7 @@ bookTitleInput.addEventListener("input", () => {
 })
 
 authorInput.addEventListener("input", () => {
-    if (authorInput.value === "") {
+    if (authorInput.validity.valueMissing) {
         authorInput.setCustomValidity("Author name cannot be blank!");
         authorInput.reportValidity();
     } else {
@@ -34,27 +30,14 @@ authorInput.addEventListener("input", () => {
     }
 })
 
-authorInput.addEventListener("input", () => {
-    if (pageNumberInput.value === "") {
+pageNumberInput.addEventListener("input", () => {
+    if (pageNumberInput.validity.valueMissing) {
         pageNumberInput.setCustomValidity("Page numbers cannot be blank!");
         pageNumberInput.reportValidity();
     } else {
         pageNumberInput.setCustomValidity("");
     }
 })
-
-//Book Constructor
-
-// function Book(title, author, pages, read) {
-//     this.title = title, 
-//     this.author = author,
-//     this.pages = pages
-//     this.read = read
-//     this.input = function () { 
-//         return this.title + " by " + this.author + ", has " + this.pages + " pages. " 
-//         + "READ STATUS: " +this.read
-//     }
-// }
 
 // Book Factory Function
 const BookFactory = (title, author, pageNumber, readStatus) => {
@@ -78,8 +61,8 @@ bookForm.addEventListener('submit', (e) => {
     // Creates a book object depending on the inputs
     const book = BookFactory(bookTitleInput.value, authorInput.value, pageNumbers.value, readStatus.value);
 
-    // pushes book object in to myLibrary array
-    myLibrary.push(book);
+    // pushes book object in to booksArray
+    booksArray.push(book);
 
     // renders book using DOM manipulation
     renderBooks()
@@ -97,8 +80,8 @@ const renderBooks = () => {
     // clears prev. DOM elements from screen, so it does not repeat
     bookDisplay.innerText = '' 
 
-    myLibrary.map(book => {
-        //Display Books from myLibrary array
+    booksArray.map(book => {
+        //Display Books from booksArray
         const bookItem = document.createElement('div');
         bookItem.innerText = book.info();
         bookDisplay.appendChild(bookItem);
@@ -115,7 +98,7 @@ const renderBooks = () => {
 
         //Remove Button Functionality
         removeBtn.addEventListener('click', () => {
-            myLibrary.splice(myLibrary.indexOf(book), 1)
+            booksArray.splice(booksArray.indexOf(book), 1)
             bookItem.remove();
         });
         
