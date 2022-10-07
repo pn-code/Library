@@ -7,12 +7,41 @@ const myLibrary = []
 const bookDisplay = document.getElementById('bookDisplay')
 const bookForm = document.getElementById('book-form')
 
-// input fields
+// Input Fields
 
 const bookTitleInput = document.getElementById('bookTitleInput')
 const authorInput = document.getElementById('authorInput')
-const pageNumbers = document.getElementById('pageNumbers')
+const pageNumberInput = document.getElementById('pageNumbers')
 const readStatus = document.getElementById('readStatus')
+
+// Form Validation
+
+bookTitleInput.addEventListener("input", () => {
+    if (bookTitleInput.value === "") {
+        bookTitleInput.setCustomValidity("Book title cannot be blank!");
+        bookTitleInput.reportValidity();
+    } else {
+        bookTitleInput.setCustomValidity("")
+    }
+})
+
+authorInput.addEventListener("input", () => {
+    if (authorInput.value === "") {
+        authorInput.setCustomValidity("Author name cannot be blank!");
+        authorInput.reportValidity();
+    } else {
+        authorInput.setCustomValidity("");
+    }
+})
+
+authorInput.addEventListener("input", () => {
+    if (pageNumberInput.value === "") {
+        pageNumberInput.setCustomValidity("Page numbers cannot be blank!");
+        pageNumberInput.reportValidity();
+    } else {
+        pageNumberInput.setCustomValidity("");
+    }
+})
 
 //Book Constructor
 
@@ -58,8 +87,8 @@ bookForm.addEventListener('submit', (e) => {
     // clears previous book inputs
     bookTitleInput.value = '';
     authorInput.value = '';
-    pageNumbers.value = '';
-    readStatus.value = '';
+    pageNumberInput.value = '';
+    readStatus.value = 'unread';
 
 });
 

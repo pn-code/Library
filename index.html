@@ -16,14 +16,14 @@
 
     <form id="book-form">
         <label for="bookTitleInput">Book Title: </label>
-        <input id="bookTitleInput" placeholder="enter book title">
+        <input id="bookTitleInput" placeholder="enter book title" required>
         <label for="authorInput">Author Name: </label>
-        <input id="authorInput" placeholder="enter author name">
+        <input id="authorInput" placeholder="enter author name" required>
         <label for="pageNumbers">Amount of Pages: </label>
-        <input id="pageNumbers" placeholder="enter amount of pages">
+        <input id="pageNumbers" placeholder="enter amount of pages" required>
         <label for="readStatus">Read Status </label>
         <select id="readStatus">
-            <option>unread</option>
+            <option selected>unread</option>
             <option>read</option>
         </select>
         <button id="addBookButton" type="submit">Add Book!</button>
