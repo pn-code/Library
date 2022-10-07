@@ -1,8 +1,18 @@
-//Library Array
-const booksArray = []
+// Library Array
+const booksArray = JSON.parse(localStorage.getItem('my-library')) || [];
+
+// Local Storage Setter
+const storeBooks = () => localStorage.setItem('my-library', JSON.stringify(booksArray));
+
+// Gives each book back its 'info' function that was removed by JSON processes
+booksArray.map(book => {
+    book.info = function() {
+        return `${this.title} by ${this.author}, has ${this.pageNumber} pages; it is ${this.readStatus}.`
+    }
+})
 
 // HTML to JS Selectors
-const bookDisplay = document.getElementById('bookDisplay')
+const bookDisplay = document.getElementById('book-display')
 const bookForm = document.getElementById('book-form')
 
 // Input Fields
@@ -64,6 +74,9 @@ bookForm.addEventListener('submit', (e) => {
     // pushes book object in to booksArray
     booksArray.push(book);
 
+    // saves new booksArray to localStorage
+    storeBooks();
+
     // renders book using DOM manipulation
     renderBooks()
 
@@ -84,21 +97,30 @@ const renderBooks = () => {
         //Display Books from booksArray
         const bookItem = document.createElement('div');
         bookItem.innerText = book.info();
+        bookItem.className = "book-item";
         bookDisplay.appendChild(bookItem);
 
+        //Adds container for buttons
+        const btnContainer = document.createElement('div');
+        btnContainer.className = "btn-container";
+        bookItem.appendChild(btnContainer);
+
         //Adds remove buttons next to each book
-        const removeBtn = document.createElement('button')
-        removeBtn.innerText = "X"
-        bookItem.appendChild(removeBtn)
+        const removeBtn = document.createElement('button');
+        removeBtn.innerText = "X";
+        removeBtn.id = "remove-btn";
+        btnContainer.appendChild(removeBtn);
 
         //Adds change read status buttons next to each book
-        const changeStatusBtn = document.createElement('button')
-        changeStatusBtn.innerText = "Change Read Status"
-        bookItem.appendChild(changeStatusBtn)
+        const changeStatusBtn = document.createElement('button');
+        changeStatusBtn.innerText = "Change Read Status";
+        changeStatusBtn.id = "change-status-btn";
+        btnContainer.appendChild(changeStatusBtn);
 
         //Remove Button Functionality
         removeBtn.addEventListener('click', () => {
             booksArray.splice(booksArray.indexOf(book), 1)
+            storeBooks();
             bookItem.remove();
         });
         
@@ -106,12 +128,14 @@ const renderBooks = () => {
         changeStatusBtn.addEventListener('click', () => {
             book.readStatus === "unread" ? 
             book.readStatus = "read" : book.readStatus = "unread";
+            storeBooks();
             renderBooks();
         })
     })
 };
 
-
+// Initial render to load books in localStorage if it exists:
+renderBooks();
 
 
 

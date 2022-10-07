@@ -1,24 +1,112 @@
-body{
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
-    }
+    margin: 0;
+}
     
-    #icon{
-        display:flex;
-        font-size: 36px;
-        font-weight: bold;
-        align-items: center;
-        padding-bottom: 4px;;
-    }
-    
-    button{
-        margin-left: 12px;
-    }
-    
-    .form {
-        margin-bottom: 4px;
-    }
-    
-    .default-buttons {
-        margin:0px;
-    }
+#icon {
+    display: flex;
+    font-size: 36px;
+    font-weight: bold;
+    align-items: center;
+    padding-bottom: 4px;;
+    gap: 10px;
+}
+
+#book-icon {
+    max-width: 80px;
+}
+
+#navbar {
+    border-bottom: rgb(71, 71, 71) solid 1px;
+    padding: 8px 8px;
+}
+
+input {
+    height: 20px;
+    font-size: 14px;
+}
+
+select {
+    height: 24px;
+    font-size: 18px;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 6px 8px;
+    background-color: rgb(41, 41, 41);
+    color: white;
+    font-size: 16px;
+    font-weight: 550;
+}
+
+#add-book-btn:hover {
+    color: rgb(252, 220, 78);
+    background-color: rgb(58, 58, 58);
+}
+
+#remove-btn:hover {
+    color: rgb(255, 83, 83);
+    background-color: rgb(58, 58, 58);
+
+}
+
+#change-status-btn:hover {
+    color: rgb(74, 233, 127);
+    background-color: rgb(58, 58, 58);
+}
+
+#book-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2%;
+    background-color: rgb(150, 150, 150);
+    color: white;
+    padding: 8px 16px;
+}
+
+#book-display {
+    background-color:rgb(226, 226, 226);
+    padding-inline: 12px;
+}
+
+.book-item {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 8px;
+}
+
+.book-item:hover {
+    font-weight: 600;
+    background-color: rgb(235, 195, 60);
+    color: white;
+}
+
+.btn-container {
+    display: flex;
+    gap: 8px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-block: 4px;
+    background-color: rgb(54, 54, 54);
+    color: rgb(235, 195, 60);
+    text-align: center;
+}
+
+footer > a {
+    text-decoration: none;
+    color: rgb(235, 195, 60);
+}
+
+footer > a:hover {
+    color: white;
+}
